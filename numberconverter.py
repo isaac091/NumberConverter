@@ -124,4 +124,4 @@ def convert_num(orig_num, start_base, end_base):
     else:
         return change_to_base(int(standard_num), end_base)
 
-print(convert_num("5555", 6, 4))
+print(convert_num(str(input("Enter the number to convert: ")), int(input("Enter the starting base: ")), int(input("Enter the end base: "))))
