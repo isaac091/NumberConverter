@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Number Converter</title>
+    </head>
+    <body>
+        <form class="" action="#" method="post">
+            <p>
+                Start Base<br>
+                <input type="number" name="start_base" min="2" max="36" value={{start_base}}>
+            </p>
+            <p>
+                End Base<br>
+                <input type="number" name="end_base" min="2" max="36" value={{end_base}}>
+            </p>
+            <p>
+                Number<br>
+                <input type="number" name="num" value={{num}}>
+            </p>
+            <p>
+                <button type="submit" name="submit">Submit</button>
+            </p>
+        </form>
+        <br>
+        <p>
+            Popular Bases: <br>
+            2 (Binary) <br>
+            10 (Decimal) <br>
+            16 (Hexadecimal)
+        </p>
+        <br>
+        <p>
+            {{result}}
+        </p>
+    </body>
+</html>

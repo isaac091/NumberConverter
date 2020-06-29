@@ -1,5 +1,5 @@
 import math
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect, url_for
 
 num_dict = {
     "0": 0,
@@ -133,9 +133,18 @@ app = Flask(__name__)
 def test():
     return render_template("index.html")
 
-@app.route("/<num>")
-def convert(num):
-    return convert_num(num, 10, 2)
+@app.route("/convert", methods=["POST", "GET"])
+def convert():
+    result = ""
+    num = 0
+    start_base = 10
+    end_base = 2
+    if request.method == "POST":
+        num = request.form["num"]
+        start_base = int(request.form["start_base"])
+        end_base = int(request.form["end_base"])
+        result = "Result: " + convert_num(num, start_base, end_base)
 
+    return render_template("convert.html", result=result, num=num, start_base=start_base, end_base=end_base)
 if __name__ == "__main__":
     app.run(debug=True)
