@@ -1,5 +1,5 @@
 import math
-from flask import Flask
+from flask import Flask, render_template
 
 num_dict = {
     "0": 0,
@@ -131,11 +131,11 @@ app = Flask(__name__)
 
 @app.route("/")
 def test():
-    return "test"
+    return render_template("index.html")
 
 @app.route("/<num>")
 def convert(num):
     return convert_num(num, 10, 2)
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
