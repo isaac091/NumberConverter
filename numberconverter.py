@@ -1,4 +1,5 @@
 import math
+from flask import Flask
 
 num_dict = {
     "0": 0,
@@ -124,4 +125,17 @@ def convert_num(orig_num, start_base, end_base):
     else:
         return change_to_base(int(standard_num), end_base)
 
-print(convert_num(str(input("Enter the number to convert: ")), int(input("Enter the starting base: ")), int(input("Enter the end base: "))))
+# print(convert_num(str(input("Enter the number to convert: ")), int(input("Enter the starting base: ")), int(input("Enter the end base: "))))
+
+app = Flask(__name__)
+
+@app.route("/")
+def test():
+    return "test"
+
+@app.route("/<num>")
+def convert(num):
+    return convert_num(num, 10, 2)
+
+if __name__ == "__main__":
+    app.run()
