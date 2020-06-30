@@ -145,7 +145,7 @@ def convert():
         num = request.form["num"]
         start_base = int(request.form["start_base"])
         end_base = int(request.form["end_base"])
-        result = "Result: " + convert_num(num, start_base, end_base)
+        result = "Result: (Base " + str(start_base) + ") " + str(num) + " = " + convert_num(num, start_base, end_base) + " (Base " + str(end_base) + ")"
 
     # render the page and print the conversion if calculation occurred
     return render_template("convert.html", result=result, num=num, start_base=start_base, end_base=end_base)
