@@ -112,7 +112,6 @@ def convert_num(orig_num, start_base, end_base):
             num_dict[digit]
         except:
             raise Exception("'" + digit + "' is an invalid character.")
-
         if num_dict[digit] >= start_base:
             raise Exception("'" + digit + "' is an invalid digit for the base '" + str(start_base) + "'. Please enter a valid number.")
 
@@ -125,26 +124,32 @@ def convert_num(orig_num, start_base, end_base):
     else:
         return change_to_base(int(standard_num), end_base)
 
-# print(convert_num(str(input("Enter the number to convert: ")), int(input("Enter the starting base: ")), int(input("Enter the end base: "))))
-
+# declare Flask app
 app = Flask(__name__)
 
+# home page
 @app.route("/")
 def test():
     return render_template("index.html")
 
+# define converter page
 @app.route("/convert", methods=["POST", "GET"])
 def convert():
-    result = ""
     num = 0
     start_base = 10
     end_base = 2
+    result = ""
+
+    # when the user hits convert, call the conversion function
     if request.method == "POST":
         num = request.form["num"]
         start_base = int(request.form["start_base"])
         end_base = int(request.form["end_base"])
         result = "Result: " + convert_num(num, start_base, end_base)
 
+    # render the page and print the conversion if calculation occurred
     return render_template("convert.html", result=result, num=num, start_base=start_base, end_base=end_base)
+
+# run the app
 if __name__ == "__main__":
     app.run(debug=True)
